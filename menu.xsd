@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.epam.lab.automation.task7.com"
+        xmlns:t="http://www.epam.lab.automation.task7.com"
+        elementFormDefault="qualified">
+
+    <element name="menu">
+        <complexType>
+            <sequence>
+                <element name="dish" type="t:content" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <simpleType name="dishes" >
+        <restriction base="string">
+            <enumeration value="cold-snack"/>
+            <enumeration value="hot-snack"/>
+            <enumeration value="breakfast"/>
+            <enumeration value="salad"/>
+            <enumeration value="soup"/>
+            <enumeration value="fish-dish"/>
+            <enumeration value="meat-dish"/>
+            <enumeration value="garnish"/>
+            <enumeration value="grill-dish"/>
+            <enumeration value="from-chef"/>
+            <enumeration value="attachment"/>
+            <enumeration value="dessert"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="portionType">
+        <restriction base="string">
+            <pattern value="[1-9][/0-9 шт\.]*"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="content">
+        <sequence>
+            <element name="dish-type" type="t:dishes"/>
+            <element name="photo" type="string"/>
+            <element name="name" type="string"/>
+            <element name="description" type="string" minOccurs="0" maxOccurs="1"/>
+            <element name="price" type="decimal" minOccurs="0" maxOccurs="1"/>
+            <element name="portion" type="t:portionType"/>
+        </sequence>
+        <attribute name="id" type="int" use="required"/>
+    </complexType>
+
+</schema>
